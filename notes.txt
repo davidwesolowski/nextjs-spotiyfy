@@ -1,0 +1,17 @@
+npx prisma db push -> jak git commit, nie zapisuje historii migracji
+pozwala wykryc, czy zmiany, ktorej dodalismy w schemie psuja scheme, ktora byla wgrana (np. dodanie pola, ktore jest wymagane)
+
+npx prisma migrate dev
+po migracji odpala seeda
+
+npx prisma migrate reset -> drop database and run migrations against it
+
+npx prisma db seed -> wywola komende z package json
+
+Serverless function -> callback in the cloud, function that is executed because of some event, usually event is tied to the url, callbacks waiting for events
+
+edge functions = functions that it on the edge of a cdn (between client and the servless function) and they act like middleware
+
+getServerSideProps -> it runs at runtime on the server, once user wants to get the page
+getStaticProps -> it runs at build time
+getStaticPaths -> if we genereate a static website, nextjs has to know what route to make, it should return the object of routes
