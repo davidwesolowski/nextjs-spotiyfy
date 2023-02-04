@@ -33,7 +33,7 @@ const Player = ({ songs, activeSong }) => {
   const [isShuffle, setIsShuffle] = useState(false)
   const [duration, setDuration] = useState(0.0)
   const songPlayerRef = useRef(null)
-  const repeatRef = useRef(null);
+  const repeatRef = useRef(null)
 
   const setActiveSong = useStoreActions((state: any) => state.changeActiveSong)
 
@@ -46,16 +46,20 @@ const Player = ({ songs, activeSong }) => {
   }
 
   const handleNextSong = () => {
-    setIndexOfTheSong((idx) => {
+    const getNextIndex = (prevIndex: number) => {
       if (isShuffle) {
         const next = Math.floor(Math.random() * songs.length)
-        if (next === idx) {
-          return handleNextSong()
+        if (next === prevIndex) {
+          return getNextIndex(prevIndex)
         }
         return next
       }
-      return idx === songs.length ? 0 : idx + 1
-    })
+      return prevIndex === songs.length ? 0 : prevIndex + 1
+    }
+
+    const nextIndex = getNextIndex(indexOfTheSong)
+
+    setIndexOfTheSong(() => nextIndex)
   }
 
   const handleOnEnd = () => {
@@ -118,7 +122,7 @@ const Player = ({ songs, activeSong }) => {
   }, [indexOfTheSong, setActiveSong, songs])
 
   useEffect(() => {
-    repeatRef.current = isRepeat;
+    repeatRef.current = isRepeat
   }, [isRepeat])
 
   return (
